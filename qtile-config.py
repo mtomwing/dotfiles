@@ -4,18 +4,7 @@
 from libqtile import bar, hook, layout, widget
 from libqtile.command import lazy
 from libqtile.manager import Drag, Click, Group, Key, Screen
-import shlex
-import subprocess
 
-preface = [
-    'feh --bg-scale /home/mtomwing/.config/qtile/wallpaper.jpg',
-]
-for command in preface:
-    args = shlex.split(command)
-    try:
-        subprocess.call(args)
-    except OSError as e:
-        print e
     #volume_up = 'amixer -q -c 0 sset Master 5dB+'
     #volume_down = 'amixer -q -c 0 sset Master 5dB-'
     #volume_toggle = 'amixer -q -c 0 sset Master toggle'
@@ -102,7 +91,7 @@ screens = [
         widget.Sep(**theme),
         widget.Battery(**theme),
         widget.Clock(**theme),
-    ], 20)),
+    ], 30)),
 ]
 
 layouts = (
@@ -129,3 +118,18 @@ def floating_dialogs(window):
     transient = window.window.get_wm_transient_for()
     if dialog or transient:
         window.floating = True
+
+@hook.subscribe.startup
+def runner():
+    import shlex
+    import subprocess
+
+    preface = [
+        'feh --bg-scale /home/mtomwing/.config/qtile/wallpaper.jpg',
+    ]
+    for command in preface:
+        args = shlex.split(command)
+        try:
+            subprocess.call(args)
+        except OSError as e:
+            print e
