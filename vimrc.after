@@ -1,5 +1,8 @@
 color elflord
 set background=dark
 
+set undofile
+set undodir=$HOME/.vim_undo,/tmp
+
 set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
 set errorformat=%f:%l:\ %m
