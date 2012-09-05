@@ -6,6 +6,8 @@
 [[ $- != *i* ]] && return
 
 source /usr/share/git/completion/git-completion.bash
+source ~/.git-prompt.sh
+export TERM='xterm-256color'
 
 ##
 # Aliases
