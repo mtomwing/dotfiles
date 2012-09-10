@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+﻿  # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from libqtile import bar, hook, layout, widget
@@ -11,6 +11,7 @@ from libqtile.manager import Drag, Click, Group, Key, Screen
 
 
 ##-> Keybindings
+ALT = 'mod1'
 MOD = 'mod4'
 keys = [
     ## Window Manager Controls
@@ -18,20 +19,22 @@ keys = [
     Key([MOD, 'control'], 'q', lazy.shutdown()),
 
     ## Window Controls
-    Key([MOD], 'w', lazy.window.kill()),
-    Key([MOD], 'Left', lazy.group.prevgroup()),
-    Key([MOD], 'Right', lazy.group.nextgroup()),
+    Key([MOD], 'q', lazy.window.kill()),
+    #Key([MOD], 'Left', lazy.group.prevgroup()),
+    #Key([MOD], 'Right', lazy.group.nextgroup()),
 
     ## Volume Controls
     #Key([], 'XF86AudioRaiseVolume', lazy.spawn(Commands.volume_up)),
     #Key([], 'XF86AudioLowerVolume', lazy.spawn(Commands.volume_down)),
     #Key([], 'XF86AudioMute', lazy.spawn(Commands.volume_toggle)),
 
-    Key([MOD], 'Return', lazy.spawn('terminal')),
+    Key([MOD], 'Return', lazy.spawn('urxvt')),
+    Key([MOD], 'n', lazy.spawn('chromium')),
+    Key([MOD], 'r', lazy.spawncmd(prompt=':')),
 
     ## Layout, group, and screen modifiers
-    #Key([MOD], 'j', lazy.layout.up()),
-    #Key([MOD], 'k', lazy.layout.down()),
+    Key([MOD], 'Up', lazy.layout.up()),
+    Key([MOD], 'Down', lazy.layout.down()),
     #Key([MOD, 'shift'], 'j', lazy.layout.shuffle_up()),
     #Key([MOD, 'shift'], 'k', lazy.layout.shuffle_down()),
     #Key([MOD, 'shift'], 'g', lazy.layout.grow()),
@@ -40,8 +43,9 @@ keys = [
     #Key([MOD, 'shift'], 'm', lazy.layout.maximize()),
     #Key([MOD, 'shift'], 'space', lazy.layout.flip()),
 
-    #Key([MOD], 'space', lazy.layout.next()),
-    #Key([MOD], 'Tab', lazy.nextlayout()),
+    Key([MOD], 'Left', lazy.layout.previous()),
+    Key([MOD], 'Right', lazy.layout.next()),
+    Key([ALT], 'Tab', lazy.nextlayout()),
 
     #Key([MOD, 'shift'], 'space', lazy.layout.rotate()),
     #Key([MOD, 'shift'], 'Return', lazy.layout.toggle_split()),
@@ -57,7 +61,7 @@ group_setup = (
     ('dev', {
         'layout': 'max',
         'apps': {'wm_class': ('Komodo Edit',)},
-        }),
+    }),
     ('www', {
         'layout': 'max',
         'apps': {'wm_class': ('Firefox', 'Google-chrome')},
@@ -85,17 +89,22 @@ theme = {
 screens = [
     Screen(top=bar.Bar([
         widget.GroupBox(**theme),
+        widget.Prompt(**theme),
         widget.WindowName(**theme),
         widget.CurrentLayout(**theme),
         widget.Systray(**theme),
         widget.Sep(**theme),
-        widget.Battery(**theme),
+        widget.Battery(energy_now_file='charge_now',
+                       energy_full_file='charge_full',
+                       power_now_file='current_now',
+                       **theme),
         widget.Clock(**theme),
     ], 30)),
 ]
 
 layouts = (
-    layout.Tile(ratio=0.5),
+#    layout.MonadTall(),
+    layout.Tile(),
     layout.Max(),
 )
 
@@ -108,9 +117,10 @@ floating_layout = layout.floating.Floating(float_rules=[{'wmclass': x} for x in 
     'Komodo_confirm_repl',
     'Komodo_find2',
     'pidgin',
-    'Update', # Komodo update window
+    'Update',  # Komodo update window
     'Xephyr',
-    )])
+)])
+
 
 @hook.subscribe.client_new
 def floating_dialogs(window):
@@ -118,18 +128,3 @@ def floating_dialogs(window):
     transient = window.window.get_wm_transient_for()
     if dialog or transient:
         window.floating = True
-
-@hook.subscribe.startup
-def runner():
-    import shlex
-    import subprocess
-
-    preface = [
-        'feh --bg-scale /home/mtomwing/.config/qtile/wallpaper.jpg',
-    ]
-    for command in preface:
-        args = shlex.split(command)
-        try:
-            subprocess.call(args)
-        except OSError as e:
-            print e
