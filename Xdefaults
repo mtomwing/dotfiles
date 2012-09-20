@@ -13,3 +13,6 @@ URxvt*termName: rxvt-unicode
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: chromium-browser
 URxvt.matcher.button: 1
+URxvt*transparent: true
+URxvt*background: Black
+URxvt*shading: 40
