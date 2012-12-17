@@ -17,6 +17,7 @@ colorscheme solarized
 " Python Mode
 let g:pymode_lint_cwindow = 0
 let g:pymode_folding = 0
+let g:pymode_lint_checker = "pylint"
 
 " Powerline
 set laststatus=2
@@ -38,3 +39,11 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
+
+" Web dev stuff
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType css setlocal shiftwidth=2 tabstop=2
+
+" Bindings to make my life easier
+noremap H ^
+noremap L $
