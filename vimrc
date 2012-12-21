@@ -17,6 +17,10 @@ colorscheme solarized
 " Python Mode
 let g:pymode_lint_cwindow = 0
 let g:pymode_folding = 0
+let g:pymode_syntax_all = 1
+let g:pymode_lint_jump = 1
+let g:pymode_lint_write = 0
+noremap <F1> :PyLint<CR>
 
 " Powerline
 set laststatus=2
