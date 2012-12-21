@@ -20,6 +20,7 @@ let g:pymode_folding = 0
 let g:pymode_syntax_all = 1
 let g:pymode_lint_jump = 1
 let g:pymode_lint_write = 0
+let g:pymode_lint_checker = "pylint"
 noremap <F1> :PyLint<CR>
 
 " Powerline
@@ -42,3 +43,11 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
+
+" Web dev stuff
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType css setlocal shiftwidth=2 tabstop=2
+
+" Bindings to make my life easier
+noremap H ^
+noremap L $

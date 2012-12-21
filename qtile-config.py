@@ -33,8 +33,8 @@ keys = [
     Key([MOD], 'r', lazy.spawncmd(prompt=':')),
 
     ## Layout, group, and screen modifiers
-    Key([MOD], 'Up', lazy.layout.up()),
-    Key([MOD], 'Down', lazy.layout.down()),
+    Key([MOD], 'k', lazy.layout.up()),
+    Key([MOD], 'j', lazy.layout.down()),
     #Key([MOD, 'shift'], 'j', lazy.layout.shuffle_up()),
     #Key([MOD, 'shift'], 'k', lazy.layout.shuffle_down()),
     #Key([MOD, 'shift'], 'g', lazy.layout.grow()),
@@ -43,8 +43,8 @@ keys = [
     #Key([MOD, 'shift'], 'm', lazy.layout.maximize()),
     #Key([MOD, 'shift'], 'space', lazy.layout.flip()),
 
-    Key([MOD], 'Left', lazy.layout.previous()),
-    Key([MOD], 'Right', lazy.layout.next()),
+    Key([MOD], 'h', lazy.layout.previous()),
+    Key([MOD], 'l', lazy.layout.next()),
     Key([ALT], 'Tab', lazy.nextlayout()),
 
     #Key([MOD, 'shift'], 'space', lazy.layout.rotate()),
