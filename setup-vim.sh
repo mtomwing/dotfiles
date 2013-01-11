@@ -5,7 +5,7 @@ if [ -e $HOME/.vimrc ]; then
 fi
 ln -s $PWD/vimrc $HOME/.vimrc
 
-if [ -e $HOME/vim ]; then
+if [ -e $HOME/.vim ]; then
     mv $HOME/.vim $HOME/.vim_old
 fi
 ln -s $PWD/vim/ $HOME/.vim
