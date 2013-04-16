@@ -1,13 +1,16 @@
 ﻿  # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 from libqtile import bar, hook, layout, widget
 from libqtile.command import lazy
-from libqtile.manager import Drag, Click, Group, Key, Screen
+from libqtile.manager import Group, Key, Screen
 
-    #volume_up = 'amixer -q -c 0 sset Master 5dB+'
-    #volume_down = 'amixer -q -c 0 sset Master 5dB-'
-    #volume_toggle = 'amixer -q -c 0 sset Master toggle'
+import custom
+
+
+class Commands:
+    volume_up = 'amixer -q -c 0 sset Master 5dB+'
+    volume_down = 'amixer -q -c 0 sset Master 5dB-'
+    volume_toggle = 'amixer -q -c 0 sset Master toggle'
 
 
 ##-> Keybindings
@@ -20,13 +23,14 @@ keys = [
 
     ## Window Controls
     Key([MOD], 'q', lazy.window.kill()),
+    Key([MOD], 'F12', lazy.window.toggle_fullscreen()),
     #Key([MOD], 'Left', lazy.group.prevgroup()),
     #Key([MOD], 'Right', lazy.group.nextgroup()),
 
     ## Volume Controls
-    #Key([], 'XF86AudioRaiseVolume', lazy.spawn(Commands.volume_up)),
-    #Key([], 'XF86AudioLowerVolume', lazy.spawn(Commands.volume_down)),
-    #Key([], 'XF86AudioMute', lazy.spawn(Commands.volume_toggle)),
+    Key([], 'XF86AudioRaiseVolume', lazy.spawn(Commands.volume_up)),
+    Key([], 'XF86AudioLowerVolume', lazy.spawn(Commands.volume_down)),
+    Key([], 'XF86AudioMute', lazy.spawn(Commands.volume_toggle)),
 
     Key([MOD], 'Return', lazy.spawn('urxvt')),
     Key([MOD], 'n', lazy.spawn('chromium')),
@@ -35,14 +39,6 @@ keys = [
     ## Layout, group, and screen modifiers
     Key([MOD], 'k', lazy.layout.up()),
     Key([MOD], 'j', lazy.layout.down()),
-    #Key([MOD, 'shift'], 'j', lazy.layout.shuffle_up()),
-    #Key([MOD, 'shift'], 'k', lazy.layout.shuffle_down()),
-    #Key([MOD, 'shift'], 'g', lazy.layout.grow()),
-    #Key([MOD, 'shift'], 's', lazy.layout.shrink()),
-    #Key([MOD, 'shift'], 'n', lazy.layout.normalize()),
-    #Key([MOD, 'shift'], 'm', lazy.layout.maximize()),
-    #Key([MOD, 'shift'], 'space', lazy.layout.flip()),
-
     Key([MOD], 'h', lazy.layout.previous()),
     Key([MOD], 'l', lazy.layout.next()),
     Key([ALT], 'Tab', lazy.nextlayout()),
@@ -91,19 +87,19 @@ screens = [
         widget.GroupBox(**theme),
         widget.Prompt(**theme),
         widget.WindowName(**theme),
-        widget.CurrentLayout(**theme),
+        #widget.CurrentLayout(**theme),
+        widget.CPUGraph(**theme),
+        widget.MemoryGraph(**theme),
+        widget.Sep(**theme),
+        custom.BetterBattery(**theme),
+        widget.Sep(**theme),
         widget.Systray(**theme),
         widget.Sep(**theme),
-        widget.Battery(energy_now_file='charge_now',
-                       energy_full_file='charge_full',
-                       power_now_file='current_now',
-                       **theme),
-        widget.Clock(**theme),
+        widget.Clock(fmt='%I:%M %p', **theme),
     ], 30)),
 ]
 
 layouts = (
-#    layout.MonadTall(),
     layout.Tile(),
     layout.Max(),
 )
@@ -113,7 +109,6 @@ floating_layout = layout.floating.Floating(float_rules=[{'wmclass': x} for x in 
     'dropbox',
     'file_progress',
     'file-roller',
-    'gimp',
     'Komodo_confirm_repl',
     'Komodo_find2',
     'pidgin',
