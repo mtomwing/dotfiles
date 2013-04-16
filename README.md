@@ -1,7 +1,8 @@
 dotfiles
 ========
 
-Setup instructions:
+VIM Setup Instructions
+----------------------
 
 1) Symlink vimrc to $HOME/.vimrc
 ```bash
