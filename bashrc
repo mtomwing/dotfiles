@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+
 source /usr/share/git/completion/git-completion.bash
 source ~/.git-prompt.sh
 export TERM='xterm-256color'
@@ -13,6 +15,7 @@ export TERM='xterm-256color'
 # Aliases
 ##
 alias ls='ls --color=auto'
+alias ll='ls -al'
 alias schedule='gcalcli calw'
 alias agenda='gcalcli agenda'
 alias scan='/home/mtomwing/Scripts/net-scan.pl --listen 192.168.1.13 --clx2160n --scan-dir /home/mtomwing/Pictures/scans/'
@@ -22,9 +25,12 @@ function workon() {
     cd $HOME/Projects/$1;
   fi
 }
-function vpn() { /home/mtomwing/Source/sshuttle/sshuttle -r $1 0.0.0.0/0 --dns ;}
+function vpn() { sshuttle -r $1 0.0.0.0/0 --dns ;}
 
-alias diablo3='xrun /home/mtomwing/Scripts/d3.sh'
+#alias leto='rdesktop -d ad.sfu.ca -u mtomwing -g 1376x738 leto.csil.sfu.ca -a 16 -z'
+alias leto='rdesktop -d ad.sfu.ca -u mtomwing -g 100% leto.csil.sfu.ca -a 16 -z'
+alias desktop='vncviewer 192.168.1.106 -compresslevel 9'
+alias open='xdg-open'
 
 ##
 # Shell colors
