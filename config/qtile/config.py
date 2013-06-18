@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from libqtile import bar, hook, layout, widget
 from libqtile.command import lazy
-from libqtile.manager import Group, Key, Screen
+from libqtile.config import Group, Key, Match, Screen
 
 import custom
 
@@ -53,26 +53,29 @@ keys = [
 ]
 
 group_setup = (
-    ('main', {}),
+    ('main', {
+        'layout': 'tile',
+    }),
     ('dev', {
         'layout': 'max',
-        'apps': {'wm_class': ('Komodo Edit',)},
     }),
     ('www', {
         'layout': 'max',
-        'apps': {'wm_class': ('Firefox', 'Google-chrome')},
+        'match': [Match(title=r'Chromium')],
     }),
-    ('im', {'layout': 'max'}),
+    ('im', {
+        'layout': 'max',
+        'match': [Match(title='Buddy List')],
+    }),
     ('vm', {
         'layout': 'max',
-        'apps': {'wm_class': ('VirtualBox',)},
     }),
 )
 
 groups = []
 for idx, (name, config) in enumerate(group_setup):
     hotkey = str(idx + 1)
-    groups.append(Group(name, layout=config.get('layout', 'tile')))
+    groups.append(Group(name, layout=config.get('layout', 'tile'), matches=config.get('match', None)))
     keys.append(Key([MOD], hotkey, lazy.group[name].toscreen()))
     keys.append(Key([MOD, 'shift'], hotkey, lazy.window.togroup(name)))
 

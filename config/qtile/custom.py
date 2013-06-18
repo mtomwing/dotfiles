@@ -12,7 +12,7 @@ BATTERY_DIR = '/sys/class/power_supply'
 
 
 class BetterBattery(base._TextBox):
-    defaults = manager.Defaults(
+    defaults = [
         ("font", "Arial", "Battery widget font"),
         ("fontsize", None, "Battery widget pixel size. Calculated if None."),
         ("padding", None, "Battery widget padding. Calculated if None."),
@@ -28,8 +28,7 @@ class BetterBattery(base._TextBox):
         ("update_delay",1,"The delay in seconds between updates"),
         ("charge_char","^","Character to indicate the battery is charging"),
         ("discharge_char","V","Character to indicate the battery is discharging"),
-
-    )
+    ]
 
     FRMTS = {
         FULL: '%(char)s %(percent)2.0d%%',
@@ -41,6 +40,7 @@ class BetterBattery(base._TextBox):
 
     def __init__(self, width=bar.CALCULATED, **config):
         base._TextBox.__init__(self, 'BAT', **config)
+        self.add_defaults(self.defaults)
 
     def _configure(self, qtile, bar):
         base._TextBox._configure(self, qtile, bar)
