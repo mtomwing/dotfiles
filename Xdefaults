@@ -15,4 +15,4 @@ URxvt.urlLauncher: chromium-browser
 URxvt.matcher.button: 1
 URxvt*transparent: true
 URxvt*background: Black
-URxvt*shading: 40
+URxvt*shading: 20
