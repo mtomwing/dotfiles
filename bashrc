@@ -19,7 +19,7 @@ alias ll='ls -al'
 alias schedule='gcalcli calw'
 alias agenda='gcalcli agenda'
 alias scan='/home/mtomwing/Scripts/net-scan.pl --listen 192.168.1.13 --clx2160n --scan-dir /home/mtomwing/Pictures/scans/'
-function workon() { 
+function old_workon() { 
   if [ -d "$HOME/.envs/$1/" ]; then
     source $HOME/.envs/$1/bin/activate;
     cd $HOME/Projects/$1;
@@ -31,6 +31,7 @@ function vpn() { sshuttle -r $1 0.0.0.0/0 --dns ;}
 alias leto='rdesktop -d ad.sfu.ca -u mtomwing -g 100% leto.csil.sfu.ca -a 16 -z'
 alias desktop='vncviewer 192.168.1.106 -compresslevel 9'
 alias open='xdg-open'
+alias freqinfo='cpupower frequency-info'
 
 ##
 # Shell colors
@@ -63,3 +64,5 @@ export PS4=" + "
 
 # Other things
 export EDITOR="vim"
+export WORKON_HOME="~/.envs"; source /usr/bin/virtualenvwrapper.sh
+export PATH="$PATH:/opt/android-studio/bin/"
