@@ -27,6 +27,7 @@ colorscheme solarized
 
 " Python Mode
 let g:pymode_rope = 0
+let g:pymode_doc = 0
 let g:pymode_lint_cwindow = 0
 let g:pymode_folding = 0
 let g:pymode_syntax_all = 1
@@ -46,6 +47,7 @@ set expandtab
 set autoindent
 set smarttab
 set hlsearch
+set number
 
 " Just so I'll stick to HJKL
 inoremap  <Up>     <NOP>
