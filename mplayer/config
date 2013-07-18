@@ -1,0 +1,8 @@
+vo=vaapi
+va=vaapi
+
+use-filename-title=yes
+subfont-text-scale=3
+ass=true
+ass-hinting=3
+embeddedfonts=true
