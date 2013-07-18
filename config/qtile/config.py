@@ -87,7 +87,7 @@ theme = {
 
 screens = [
     Screen(top=bar.Bar([
-        widget.GroupBox(**theme),
+        widget.GroupBox(disable_drag=True, **theme),
         widget.Prompt(**theme),
         widget.WindowName(**theme),
         #widget.CurrentLayout(**theme),
