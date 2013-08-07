@@ -12,6 +12,7 @@ Bundle 'Lokaltog/powerline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/syntastic'
 Bundle 'klen/python-mode'
+Bundle 'jnwhiteh/vim-golang'
 Bundle 'Valloric/YouCompleteMe'
 
 " Regular Stuff
