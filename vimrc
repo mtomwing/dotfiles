@@ -66,3 +66,17 @@ autocmd FileType css setlocal shiftwidth=2 tabstop=2
 " Bindings to make my life easier
 noremap H ^
 noremap L $
+
+" Toggle 80 column marker
+nnoremap <F2> :call ToggleColorColumn()<CR>
+func! ToggleColorColumn()
+    if exists("b:colorcolumnon") && b:colorcolumnon
+        let b:colorcolumnon = 0
+        exec ':set colorcolumn=0'
+        echo '80 column marker off'
+    else
+        let b:colorcolumnon = 1
+        exec ':set colorcolumn=80'
+        echo '80 column marker on'
+    endif    
+endfunc
