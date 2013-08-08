@@ -94,6 +94,8 @@ screens = [
         widget.CPUGraph(**theme),
         widget.MemoryGraph(**theme),
         widget.Sep(**theme),
+        widget.ThermalSensor(**theme),
+        widget.Sep(**theme),
         custom.BetterBattery(**theme),
         widget.Sep(**theme),
         widget.Systray(**theme),
