@@ -43,6 +43,14 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " Powerline
 set laststatus=2
 
+" Web dev stuff
+autocmd Filetype html call SetHTMLOptions()
+autocmd Filetype htmldjango call SetHTMLOptions()
+function SetHTMLOptions()
+    setlocal shiftwidth=2
+    setlocal tabstop=2
+endfunction
+
 " Various Settings
 set tabstop=4
 set shiftwidth=4
@@ -61,10 +69,6 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
-
-" Web dev stuff
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType css setlocal shiftwidth=2 tabstop=2
 
 " Bindings to make my life easier
 noremap H ^
