@@ -11,7 +11,9 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/powerline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/syntastic'
-Bundle 'klen/python-mode'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
+Bundle 'jnwhiteh/vim-golang'
 Bundle 'Valloric/YouCompleteMe'
 
 " Regular Stuff
@@ -25,17 +27,9 @@ set t_Co=256
 let g:solarized_termtrans = 1
 colorscheme solarized
 
-" Python Mode
-let g:pymode_rope = 0
-let g:pymode_doc = 0
-let g:pymode_lint_cwindow = 0
-let g:pymode_folding = 0
-let g:pymode_syntax_all = 1
-let g:pymode_lint_jump = 1
-let g:pymode_lint_write = 0
-let g:pymode_lint_checker = "pylint"
-noremap <F1> :PyLint<CR>
-noremap <F2> :PyLintAuto<CR>
+" Syntastic
+let g:syntastic_python_checkers=['pylint']
+noremap <F1> :SyntasticCheck<CR>
 
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -60,6 +54,12 @@ set smarttab
 set hlsearch
 set number
 
+" Easier Window Switching
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 " Just so I'll stick to HJKL
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
@@ -73,3 +73,17 @@ noremap   <Right>  <NOP>
 " Bindings to make my life easier
 noremap H ^
 noremap L $
+
+" Toggle 80 column marker
+nnoremap <F2> :call ToggleColorColumn()<CR>
+func! ToggleColorColumn()
+    if exists("b:colorcolumnon") && b:colorcolumnon
+        let b:colorcolumnon = 0
+        exec ':set colorcolumn=0'
+        echo '80 column marker off'
+    else
+        let b:colorcolumnon = 1
+        exec ':set colorcolumn=80'
+        echo '80 column marker on'
+    endif    
+endfunc
