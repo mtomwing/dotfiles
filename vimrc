@@ -37,6 +37,9 @@ let g:pymode_lint_checker = "pylint"
 noremap <F1> :PyLint<CR>
 noremap <F2> :PyLintAuto<CR>
 
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion = 1
+
 " Powerline
 set laststatus=2
 
