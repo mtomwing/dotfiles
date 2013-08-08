@@ -66,3 +66,4 @@ export PS4=" + "
 export EDITOR="vim"
 export WORKON_HOME="~/.envs"; source /usr/bin/virtualenvwrapper.sh
 export PATH="$PATH:/opt/android-studio/bin/"
+export SCIPY_PIL_IMAGE_VIEWER="eog"
