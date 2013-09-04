@@ -30,7 +30,7 @@ let g:solarized_termtrans = 1
 colorscheme solarized
 
 " Syntastic
-let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers=['pyflakes']
 noremap <F1> :SyntasticCheck<CR>
 
 " YouCompleteMe
