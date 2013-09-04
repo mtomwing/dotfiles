@@ -13,6 +13,8 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'Valloric/YouCompleteMe'
 
@@ -36,6 +38,13 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Powerline
 set laststatus=2
+
+" Gist
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_browser_command = 'chromium %URL%'
+let g:gist_show_privates = 1
+let g:gist_get_multiplefile = 1
 
 " Web dev stuff
 autocmd Filetype html call SetHTMLOptions()
