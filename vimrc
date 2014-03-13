@@ -1,54 +1,104 @@
+" Virtualenv
+python << EOF
+import sys, vim, os
+
+ve_dir = vim.eval('$VIRTUAL_ENV')
+ve_dir in sys.path or sys.path.insert(0, ve_dir)
+activate_this = os.path.join(ve_dir, 'bin', 'activate_this.py')
+
+if os.path.exists(activate_this):
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
+
 " Vundle Stuff
 set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
+"
 " Bundles
 Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/powerline'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-surround'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'jnwhiteh/vim-golang'
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'bitc/vim-bad-whitespace'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'vim-pandoc/vim-pandoc-syntax'
+Bundle 'vim-pandoc/vim-pantondoc'
 
 " Regular Stuff
 filetype plugin indent on
 syntax on
 
+" Put VIM's temp files somewhere
+set backupdir=~/.vimbackup/
+set directory=~/.vimbackup/
+
+" Highlight the current line
+set cursorline
+hi CursorLine cterm=none ctermbg=254 guibg=Gray89
+
+" indicate tabs
+set list listchars=tab:→\
+
+" ignore case when searching, except when pattern contains capital
+set ignorecase
+set smartcase
+
+" Performance Stuff
+" set synmaxcol=200
+" set ttyfast
+" set ttyscroll=3
+" set lazyredraw
+
+" OSX Stuff
+set clipboard=unnamed
+set backspace=indent,eol,start
+
 " Solarized
 syntax enable
-set background=dark
-set t_Co=256
+set background=light
+" set t_Co=256
 let g:solarized_termtrans = 1
+let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 colorscheme solarized
 
 " Syntastic
-let g:syntastic_python_checkers=['pyflakes']
+let g:syntastic_python_checkers=['flake8']
 noremap <F1> :SyntasticCheck<CR>
 
 " YouCompleteMe
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python2'
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_filepath_completion_use_working_dir = 1
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Powerline
 set laststatus=2
+set encoding=utf-8
 
 " Gist
+let g:gist_browser_command = 'open %URL%'
+let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-let g:gist_browser_command = 'chromium %URL%'
-let g:gist_show_privates = 1
 let g:gist_get_multiplefile = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_show_privates = 1
 
 " Web dev stuff
 autocmd Filetype html call SetHTMLOptions()
 autocmd Filetype htmldjango call SetHTMLOptions()
+autocmd Filetype javascript call SetHTMLOptions()
 function SetHTMLOptions()
     setlocal shiftwidth=2
     setlocal tabstop=2
@@ -94,5 +144,23 @@ func! ToggleColorColumn()
         let b:colorcolumnon = 1
         exec ':set colorcolumn=80'
         echo '80 column marker on'
-    endif    
+    endif
 endfunc
+
+" Remove trailing whitespace
+nnoremap <Leader>rtw :%s/\s\+$//e<CR>
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+" Pandoc
+autocmd BufRead,BufNewFile *.md set filetype=pandoc
+autocmd Filetype pandoc call SetHTMLOptions()
+let g:pandoc_no_folding = 1
+set nofoldenable
+
+" GUI Stuff
+set guifont=Source\ Code\ Pro:h13
+set lines=999 columns=9999
+set noerrorbells
+set novisualbell
+autocmd! GUIEnter * set vb t_vb=
