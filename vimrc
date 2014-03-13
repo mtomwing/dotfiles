@@ -95,6 +95,10 @@ let g:gist_get_multiplefile = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_show_privates = 1
 
+" GitGutter
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+
 " Web dev stuff
 autocmd Filetype html call SetHTMLOptions()
 autocmd Filetype htmldjango call SetHTMLOptions()
