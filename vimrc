@@ -19,6 +19,7 @@ call vundle#rc()
 "
 " Bundles
 Bundle 'gmarik/vundle'
+Bundle 'LaTeX-Box-Team/LaTeX-Box'
 Bundle 'Lokaltog/powerline'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Valloric/YouCompleteMe'
