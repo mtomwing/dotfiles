@@ -32,6 +32,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'vim-pandoc/vim-pantondoc'
+Bundle 'wting/rust.vim'
 
 " Regular Stuff
 filetype plugin indent on
