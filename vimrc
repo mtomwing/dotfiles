@@ -113,13 +113,17 @@ function SetHTMLOptions()
     setlocal tabstop=2
 endfunction
 
+" Search Settings
+set ignorecase
+set hlsearch
+set incsearch
+
 " Various Settings
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
 set smarttab
-set hlsearch
 set number
 
 " Easier Window Switching
