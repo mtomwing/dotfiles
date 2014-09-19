@@ -8,12 +8,12 @@ call vundle#rc()
 " Bundles
 Bundle 'gmarik/vundle'
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
-Bundle 'Lokaltog/powerline'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bitc/vim-bad-whitespace'
+Bundle 'bling/vim-airline'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
