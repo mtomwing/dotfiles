@@ -1,22 +1,10 @@
-" Virtualenv
-python << EOF
-import sys, vim, os
-
-ve_dir = vim.eval('$VIRTUAL_ENV')
-ve_dir in sys.path or sys.path.insert(0, ve_dir)
-activate_this = os.path.join(ve_dir, 'bin', 'activate_this.py')
-
-if os.path.exists(activate_this):
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
-
 " Vundle Stuff
 set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-"
+
 " Bundles
 Bundle 'gmarik/vundle'
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
@@ -26,6 +14,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bitc/vim-bad-whitespace'
+Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'scrooloose/syntastic'
