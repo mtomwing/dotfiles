@@ -11,7 +11,6 @@ Bundle 'LaTeX-Box-Team/LaTeX-Box'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'bitc/vim-bad-whitespace'
 Bundle 'bling/vim-airline'
 Bundle 'jmcantrell/vim-virtualenv'
@@ -23,6 +22,14 @@ Bundle 'tpope/vim-surround'
 Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'vim-pandoc/vim-pantondoc'
 Bundle 'wting/rust.vim'
+
+" Themes
+Bundle 'DAddYE/soda.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'freeo/vim-kalisi'
+Bundle 'reedes/vim-colors-pencil'
+Bundle 'tomasr/molokai'
 
 " Regular Stuff
 filetype plugin indent on
