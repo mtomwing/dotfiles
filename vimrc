@@ -6,19 +6,30 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Bundles
+"" Plugin manager
 Bundle 'gmarik/vundle'
+"" LaTeX auto-compiling or something
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
-Bundle 'Lokaltog/vim-powerline'
+"" Vim motions for noobs
+Bundle 'Lokaltog/vim-easymotion'
+"" Best code completion plugin
 Bundle 'Valloric/YouCompleteMe'
+"" Git-related info in the gutter on the left
 Bundle 'airblade/vim-gitgutter'
+"" Automatically highlight trailing whitespace
 Bundle 'bitc/vim-bad-whitespace'
+"" Information status bar at the bottom
 Bundle 'bling/vim-airline'
+"" Python virtualenv support
 Bundle 'jmcantrell/vim-virtualenv'
+"" Open files based on their contents
 Bundle 'kien/ctrlp.vim'
+"" Upload your buffers to gists
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-pandoc/vim-pandoc-syntax'
 Bundle 'vim-pandoc/vim-pantondoc'
@@ -27,6 +38,7 @@ Bundle 'wting/rust.vim'
 " Themes
 Bundle 'DAddYE/soda.vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/base16-vim'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'freeo/vim-kalisi'
 Bundle 'reedes/vim-colors-pencil'
@@ -54,28 +66,22 @@ set list listchars=tab:→\
 set ignorecase
 set smartcase
 
-" Performance Stuff
-" set synmaxcol=200
-" set ttyfast
-" set ttyscroll=3
-" set lazyredraw
-
 " OSX Stuff
 set clipboard=unnamed
 set backspace=indent,eol,start
 
 " Solarized
 syntax enable
-set background=light
+set background=dark
 " set t_Co=256
 let g:solarized_termtrans = 1
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
-colorscheme solarized
+colorscheme Tomorrow-Night-Eighties
 
 " Syntastic
-let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_checkers=['flake8', 'pyflakes']
 noremap <F1> :SyntasticCheck<CR>
 
 " YouCompleteMe
@@ -101,15 +107,6 @@ let g:gist_show_privates = 1
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
-" Web dev stuff
-autocmd Filetype html call SetHTMLOptions()
-autocmd Filetype htmldjango call SetHTMLOptions()
-autocmd Filetype javascript call SetHTMLOptions()
-function SetHTMLOptions()
-    setlocal shiftwidth=2
-    setlocal tabstop=2
-endfunction
-
 " Search Settings
 set ignorecase
 set hlsearch
@@ -122,6 +119,8 @@ set expandtab
 set autoindent
 set smarttab
 set number
+set title
+set showcmd
 
 " Easier Window Switching
 map <C-j> <C-W>j
@@ -169,8 +168,18 @@ let g:pandoc_no_folding = 1
 set nofoldenable
 
 " GUI Stuff
-set guifont=Source\ Code\ Pro:h13
+set guifont=Source\ Code\ Pro:h12
+set guioptions=aem
 set lines=999 columns=9999
 set noerrorbells
 set novisualbell
 autocmd! GUIEnter * set vb t_vb=
+
+" Web dev stuff
+autocmd Filetype html call SetHTMLOptions()
+autocmd Filetype htmldjango call SetHTMLOptions()
+autocmd Filetype javascript call SetHTMLOptions()
+function SetHTMLOptions()
+    setlocal shiftwidth=2
+    setlocal tabstop=2
+endfunction
