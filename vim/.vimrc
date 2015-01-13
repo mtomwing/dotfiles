@@ -51,9 +51,7 @@ syntax on
 " Put VIM's temp files somewhere
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
-if exists("&undodir")
-    set undodir=~/.vim/undo
-endif
+set undodir=~/.vim/undo
 
 " Highlight the current line
 set cursorline
