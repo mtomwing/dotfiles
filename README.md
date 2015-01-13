@@ -1,16 +1,26 @@
-dotfiles
-========
+# dotfiles
 
-VIM Setup Instructions
-----------------------
+## Requirements
 
-1) Initialize and pull any necessary git submodules
+Besides the obvious per package requirements, the main thing you need is either GNU Stow or XStow.
+
+## How to use
+
 ```bash
-git submodule init
-git submodule update
+$ git clone https://github.com/mtomwing/dotfiles.git ~/dotfiles
+$ cd ~/dotfiles
+$ stow <package name>
 ```
 
-2) Sync with dotfiles
-```bash
-dotfiles --sync
-```
+## Extra VIM Steps
+
+  1) Initialize and update any git submodules
+  ```bash
+$ git submodule init
+$ git submodule update
+  ```
+
+  2) Create necessary VIM folders
+  ```bash
+$ mkdir -p ~/.vim/{backups,swaps,undo}
+  ```
