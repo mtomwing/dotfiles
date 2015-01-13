@@ -1,0 +1,8 @@
+/* vim: set filetype=sh: */
+
+# Load auto completions
+if [ -f /etc/bash_completion ]; then
+    source /etc/bash_completion
+else
+    echo "Bash auto completions are not installed."
+fi

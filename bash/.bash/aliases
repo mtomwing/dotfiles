@@ -1,0 +1,5 @@
+/* vim: set filetype=sh: */
+
+alias ll='ls -al'
+
+function vpn() { sshuttle -r $1 0.0.0.0/0 --dns ;}
