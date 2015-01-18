@@ -1,8 +1,13 @@
-/* vim: set filetype=sh: */
+# vim: set filetype=sh:
 
 # Load auto completions
 if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
     source "$(brew --prefix)/etc/bash_completion"
 else
     echo "Bash auto completions are not installed."
+fi
+
+# Load virtualenvwrapper (for mkvirtualenv, workon, etc.)
+if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
