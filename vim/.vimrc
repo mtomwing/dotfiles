@@ -119,6 +119,7 @@ set smarttab
 set number
 set title
 set showcmd
+set ttyfast
 
 " Easier Window Switching
 map <C-j> <C-W>j
