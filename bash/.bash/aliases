@@ -1,5 +1,6 @@
 # vim: set filetype=sh:
 
 alias ll='ls -al'
+alias clean-docker-images='docker rmi $(docker images -q --filter "dangling=true")'
 
 function vpn() { sshuttle -r $1 0.0.0.0/0 --dns ;}
