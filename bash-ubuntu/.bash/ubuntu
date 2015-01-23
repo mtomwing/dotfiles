@@ -1,4 +1,4 @@
-/* vim: set filetype=sh: */
+# vim: set filetype=sh:
 
 # Load auto completions
 if [ -f /etc/bash_completion ]; then
