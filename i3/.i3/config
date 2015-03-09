@@ -21,6 +21,9 @@ exec --no-startup-id xset dpms 1800 0 0
 # Simple volume control tray icon (from gnome-control-center package)
 exec --no-startup-id gnome-sound-applet
 
+# Dunst notification daemon
+exec --no-startup-id dunst
+
 # Start ssh-agent for passwordless ssh
 exec --no-startup-id ssh-add
 
