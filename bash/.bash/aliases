@@ -4,3 +4,11 @@ alias ll='ls -al'
 alias clean-docker-images='docker rmi $(docker images -q --filter "dangling=true")'
 
 function vpn() { sshuttle -r $1 0.0.0.0/0 --dns ;}
+function offices() {
+    echo -n 'Vancouver: '
+    TZ='America/Vancouver' date "+%h %d - %I:%M %p"
+    echo -n 'Dublin   : '
+    TZ='Europe/Dublin' date "+%h %d - %I:%M %p"
+    echo -n 'Shanghai : '
+    TZ='Asia/Shanghai' date "+%h %d - %I:%M %p"
+}
