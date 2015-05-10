@@ -12,7 +12,7 @@ export EDITOR="vim"
 
 
 ## Virtualenv Stuff
-export WORKON_HOME="~/.envs"
+export WORKON_HOME="~/.virtualenvs"
 if [ -f "/usr/bin/virtualenvwrapper.sh" ]; then
     source /usr/bin/virtualenvwrapper.sh
 fi
