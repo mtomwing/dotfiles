@@ -5,34 +5,26 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Bundles
-"" Plugin manager
+" Plugins
 Bundle 'gmarik/vundle'
-"" LaTeX auto-compiling or something
-Bundle 'LaTeX-Box-Team/LaTeX-Box'
-"" Vim motions for noobs
 Bundle 'Lokaltog/vim-easymotion'
-"" Best code completion plugin
 Bundle 'Valloric/YouCompleteMe'
-"" Git-related info in the gutter on the left
 Bundle 'airblade/vim-gitgutter'
-"" Automatically highlight trailing whitespace
 Bundle 'bitc/vim-bad-whitespace'
-"" Information status bar at the bottom
 Bundle 'bling/vim-airline'
-"" Python virtualenv support
-Bundle 'jmcantrell/vim-virtualenv'
-"" Open files based on their contents
-Bundle 'kien/ctrlp.vim'
-"" Upload your buffers to gists
-Bundle 'mattn/gist-vim'
+Bundle 'chrisbra/csv.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'ekalinin/Dockerfile.vim'
+Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'lambdalisue/vim-pyenv'
 Bundle 'mattn/webapi-vim'
+Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'vim-pandoc/vim-pandoc-syntax'
-Bundle 'vim-pandoc/vim-pantondoc'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tweekmonster/braceless.vim'
 Bundle 'wting/rust.vim'
 
 " Themes
@@ -42,6 +34,7 @@ Bundle 'chriskempson/base16-vim'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'freeo/vim-kalisi'
 Bundle 'reedes/vim-colors-pencil'
+Bundle 'romainl/Apprentice'
 Bundle 'tomasr/molokai'
 
 " Regular Stuff
@@ -65,25 +58,45 @@ set ignorecase
 set smartcase
 
 " OSX Stuff
-set clipboard=unnamed
+set clipboard=unnamedplus
 set backspace=indent,eol,start
 
-" Solarized
+" Theme
 syntax enable
+let base16colorspace=256
+set t_Co=256
 set background=dark
-" set t_Co=256
-let g:solarized_termtrans = 1
-let g:solarized_termcolors = 256
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-colorscheme Tomorrow-Night-Eighties
+colorscheme base16-atelierdune
+
+" braceless
+autocmd FileType python BracelessEnable +indent +fold + highlight
+
+" CtrlP
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+let g:ctrlp_working_path_mode = 'r'
+nmap <leader>p :CtrlP<cr>
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
+
+" Buffergator
+let g:buffergator_viewport_split_policy = 'R'
+let g:buffergator_suppress_keymaps = 1
+nmap <leader>jj :BuffergatorMruCyclePrev<cr>
+nmap <leader>kk :BuffergatorMruCycleNext<cr>
+nmap <leader>bl :BuffergatorOpen<cr>
+nmap <leader>t :enew<cr>
+nmap <leader>bq :bp <BAR> bd #<cr>
 
 " Syntastic
 let g:syntastic_python_checkers=['flake8', 'pyflakes']
 noremap <F1> :SyntasticCheck<CR>
 
 " YouCompleteMe
-let g:ycm_path_to_python_interpreter = '/usr/local/bin/python2'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_filepath_completion_use_working_dir = 1
@@ -104,6 +117,12 @@ let g:gist_show_privates = 1
 " GitGutter
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
+
+" csv.vim
+let g:csv_highlight_column = 'y'
+
+" Search / Replace word under cursor
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " Search Settings
 set ignorecase
@@ -161,13 +180,13 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
 " Pandoc
-autocmd BufRead,BufNewFile *.md set filetype=pandoc
-autocmd Filetype pandoc call SetHTMLOptions()
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd Filetype markdown call SetHTMLOptions()
 let g:pandoc_no_folding = 1
 set nofoldenable
 
 " GUI Stuff
-set guifont=Source\ Code\ Pro:h12
+set guifont=Source\ Code\ Pro:h13
 set guioptions=aem
 set lines=999 columns=9999
 set noerrorbells
@@ -181,4 +200,10 @@ autocmd Filetype javascript call SetHTMLOptions()
 function SetHTMLOptions()
     setlocal shiftwidth=2
     setlocal tabstop=2
+endfunction
+
+" C++ Stuff
+autocmd Filetype cpp call SetCPPOptions()
+function SetCPPOptions()
+    setlocal noexpandtab
 endfunction
