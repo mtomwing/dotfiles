@@ -6,12 +6,6 @@
 # gnome-settings-daemon is not required, instead use lxappearance to set the
 # GTK 2/3 themes.
 
-# Sensors applet
-exec --no-startup-id psensor
-
-# Network indicator applet
-exec --no-startup-id nm-applet
-
 # Set the background colour to something boring
 exec --no-startup-id xsetroot -solid '#808080'
 
@@ -21,46 +15,144 @@ exec --no-startup-id xset dpms 1800 0 0
 # Simple volume control tray icon (from gnome-control-center package)
 exec --no-startup-id gnome-sound-applet
 
+# Networkmanager tray icon
+exec --no-startup-id nm-applet --sm-disable
+
 # Dunst notification daemon
 exec --no-startup-id dunst
 
 # Start ssh-agent for passwordless ssh
 exec --no-startup-id ssh-add
 
+# Save my eyes!
+exec --no-startup-id redshift
+
+# Setup auto locking
+exec --no-startup-id xss-lock -- ~/.i3/lock.sh
+
+# Pulseaudio tray icon
+exec --no-startup-id pasystray
+
+# Disable touchpad tapping while typing
+exec --no-startup-id syndaemon -t -k -i 2
+
+# Transparency and no tearing
+# exec --no-startup-id compton
+
+# IBus for foreign input
+exec --no-startup-id ibus-daemon -drx
+
+###############################################################################
+# Multimedia keybindings
+###############################################################################
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
+bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym XF86AudioMicMute exec pulseaudio-ctl mute-input
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Random wallpaper
+bindsym Mod4+p exec feh --randomize --bg-scale ~/Pictures/Wallpapers/*
+
+bindsym Mod4+h exec i3-msg move workspace to output left
+bindsym Mod4+j exec i3-msg move workspace to output down
+bindsym Mod4+k exec i3-msg move workspace to output up
+bindsym Mod4+l exec i3-msg move workspace to output right
+
 ###############################################################################
 # Command keybindings
 ###############################################################################
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 
-# lock screen using LightDM on Super+l
-bindsym Mod4+l exec ~/.i3/lock.sh
+# start dmenu (a program launcher)
+bindsym $mod+n exec nmcli_dmenu
+
+# lock screen
+bindsym Mod4+m exec xset s activate
 
 # rename the current workspace
 # https://faq.i3wm.org/question/451/dynamically-change-workspace-name-with-ease/
 bindsym $mod+Shift+n exec ~/.i3/rename.sh
 
 ###############################################################################
+# Various Keybindings
+###############################################################################
+
+bindsym Mod4+o exec ~/.i3/rebind_caps.sh
+
+###############################################################################
 # Panel Configuration (i3bar)
 ###############################################################################
 
 bar {
-    output DVI-D-0
+    output DP2-1
     position top
-    status_command i3status
+    status_command python ~/.i3/pystatus.py
+    workspace_buttons yes
+    font pango:Source Code Pro Medium 10
+    tray_output DP2-1
+}
+
+bar {
+    output HDMI1
+    position top
+    status_command python ~/.i3/pystatus.py
+    workspace_buttons yes
+    font pango:Source Code Pro Medium 10
+    tray_output HDMI1
+}
+
+bar {
+    output DP1
+    position top
+    status_command python ~/.i3/pystatus.py
+    workspace_buttons yes
+    font pango:Source Code Pro Medium 10
+    tray_output HDMI1
+}
+
+bar {
+    output eDP1
+    position top
+    status_command python ~/.i3/pystatus.py
+    workspace_buttons yes
+    font pango:Source Code Pro Medium 10
+    tray_output eDP1
+}
+
+bar {
+    output DP2-2
+    position top
+    status_command python ~/.i3/pystatus.py
+    workspace_buttons yes
     font pango:Source Code Pro Medium 10
 }
 
 bar {
-    output DVI-D-1
+    output VGA1
     position top
-    status_command i3status
+    status_command python ~/.i3/pystatus.py
+    workspace_buttons yes
     font pango:Source Code Pro Medium 10
 }
+
+new_window normal 1 px
 
 ###############################################################################
 # Window Management Keybindings
@@ -144,7 +236,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
