@@ -26,6 +26,7 @@ NeoBundle 'tweekmonster/braceless.vim'
 NeoBundle 'benekastah/neomake'
 NeoBundle 'junegunn/fzf', {'dir': '~/.fzf'}
 NeoBundle 'junegunn/fzf.vim'
+NeoBundle 'christoomey/vim-tmux-navigator'
 
 "" Syntax Highlighting
 NeoBundle 'chrisbra/csv.vim'
@@ -201,6 +202,9 @@ nnoremap <silent> <Leader>; :Commands<CR>
 nnoremap <silent> <Leader>h :Helptags<CR>
 nnoremap <silent> <Leader>ll :Lines<CR>
 nnoremap <silent> <Leader>lb :BLines<CR>
+
+"" Tmux Navigato
+nmap <bs> :<c-u>TmuxNavigateLeft<cr>
 
 
 " LANGUAGE SETTINGS
