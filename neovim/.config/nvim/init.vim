@@ -223,3 +223,10 @@ autocmd Filetype cpp call SetCPPOptions()
 function SetCPPOptions()
     setlocal noexpandtab
 endfunction
+
+"" YAML Stuff
+autocmd Filetype yaml call SetYAMLOptions()
+function SetYAMLOptions()
+    set shiftwidth=2
+    set tabstop=2
+endfunction
