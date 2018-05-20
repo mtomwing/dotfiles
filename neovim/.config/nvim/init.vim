@@ -27,6 +27,7 @@ NeoBundle 'benekastah/neomake'
 NeoBundle 'junegunn/fzf', {'dir': '~/.fzf'}
 NeoBundle 'junegunn/fzf.vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'tpop/vim-obsession'
 
 "" Syntax Highlighting
 NeoBundle 'chrisbra/csv.vim'
@@ -35,6 +36,7 @@ NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'wting/rust.vim'
 NeoBundle 'junegunn/rainbow_parentheses.vim'
 NeoBundle 'rodjek/vim-puppet'
+NeoBundle 'posva/vim-vue'
 
 "" Code Completion
 NeoBundle 'Shougo/echodoc.vim'
@@ -42,6 +44,10 @@ NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'zchee/deoplete-jedi', {'for': 'python'}
 NeoBundle 'davidhalter/jedi-vim', {'for': 'python'}
 NeoBundle 'zchee/deoplete-clang', {'for': 'cpp'}
+
+NeoBundle 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
+let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/mtomwing/Projects/rust/src'
 
 "" Git Things
 NeoBundle 'gregsexton/gitv'
