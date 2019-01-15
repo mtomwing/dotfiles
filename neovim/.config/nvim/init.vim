@@ -41,13 +41,10 @@ NeoBundle 'posva/vim-vue'
 "" Code Completion
 NeoBundle 'Shougo/echodoc.vim'
 NeoBundle 'Shougo/deoplete.nvim'
-NeoBundle 'zchee/deoplete-jedi', {'for': 'python'}
-NeoBundle 'davidhalter/jedi-vim', {'for': 'python'}
-NeoBundle 'zchee/deoplete-clang', {'for': 'cpp'}
-
-NeoBundle 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
-let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/home/mtomwing/Projects/rust/src'
+"NeoBundle 'zchee/deoplete-jedi', {'for': 'python'}
+"NeoBundle 'davidhalter/jedi-vim', {'for': 'python'}
+"NeoBundle 'zchee/deoplete-clang', {'for': 'cpp'}
+NeoBundle 'tbodt/deoplete-tabnine', { 'build': {'linux': './install.sh' }}
 
 "" Git Things
 NeoBundle 'gregsexton/gitv'
