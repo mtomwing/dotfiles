@@ -3,7 +3,5 @@
 alias ll='ls -al'
 alias clean-docker-images='docker rmi $(docker images -q --filter "dangling=true")'
 
-function vpn() { sshuttle -r $1 0.0.0.0/0 --dns ;}
-
 alias rcp='rsync --partial --progress --append --rsh=ssh -r -h'
 alias rmv='rsync --partial --progress --append --rsh=ssh -r -h --remove-sent-files'
