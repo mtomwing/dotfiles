@@ -3,8 +3,8 @@ set clipboard+=unnamedplus
 filetype off
 
 " Python Interpreter
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python'
+let g:python_host_prog = expand('~/.virtualenvs/neovim2/bin/python')
+let g:python3_host_prog = expand('~/.virtualenvs/neovim3/bin/python')
 
 " Vundle Setup
 set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
