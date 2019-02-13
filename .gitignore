@@ -1,5 +1,5 @@
 *.pyc
-vim/.vim/bundle/*
-vim/.vim/{backups,swaps,undo}/
 neovim/.config/nvim/bundle/*
-neovim/.config/nvim/{backups,swaps,undo}/
+neovim/.config/nvim/backups/*
+neovim/.config/nvim/swaps/*
+neovim/.config/nvim/undo/*
