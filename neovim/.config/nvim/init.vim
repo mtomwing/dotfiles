@@ -166,9 +166,6 @@ let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#enable_refresh_always = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-"" Deoplete - Python
-let deoplete#sources#jedi#enable_cache = 1
-let g:jedi#completions_enabled = 0
 
 "" Deoplete - Clang
 let deoplete#sources#clang#enable_cache = 1
@@ -199,33 +196,13 @@ nnoremap ,gc :Gcommit<cr>
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
-"" Neomake
-autocmd! BufWritePost * Neomake
-let g:neomake_python_enabled_makers = ['pylama']
-
-"" FZF
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-fun! s:fzf_root()
-	let l:path = finddir('.git', expand('%:p:h').';')
-	return fnamemodify(substitute(l:path, '.git', '', ''), ':p:h')
-endfun
-nnoremap <silent> <Leader>ff :exe 'Files ' . <SID>fzf_root()<CR>
-nnoremap <silent> <Leader>fc :Colors<CR>
-nnoremap <silent> <Leader>fh :History<CR>
-nnoremap <silent> <Leader>bb :Buffers<CR>
-nnoremap <silent> <Leader>; :Commands<CR>
-nnoremap <silent> <Leader>h :Helptags<CR>
-nnoremap <silent> <Leader>ll :Lines<CR>
-nnoremap <silent> <Leader>lb :BLines<CR>
-
 "" Tmux Navigato
 nmap <bs> :<c-u>TmuxNavigateLeft<cr>
+
+"" w0rp/ale
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+let g:airline#extensions#ale#enabled = 1
 
 
 " LANGUAGE SETTINGS
@@ -250,4 +227,41 @@ autocmd Filetype yaml call SetYAMLOptions()
 function SetYAMLOptions()
     set shiftwidth=2
     set tabstop=2
+endfunction
+
+""" Python Stuff
+autocmd Filetype python call SetPythonOptions()
+function SetPythonOptions()
+
+endfunction
+
+"" Golang Stuff
+autocmd Filetype go call SetGolangOptions()
+function SetGolangOptions()
+    " Indentation
+    set noexpandtab
+    set shiftwidth=4
+    set softtabstop=4
+    set tabstop=4
+
+    " Pretty colours
+    let g:go_highlight_build_constraints = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_types = 1
+
+    " Highlight same identifiers
+    let g:go_auto_sameids = 1
+
+    " Automatically include imports
+    let g:go_fmt_command = "goimports"
+
+    " Show types
+    let g:go_auto_type_info = 1
+
+    noremap <Leader>d :GoDef<CR>
 endfunction
