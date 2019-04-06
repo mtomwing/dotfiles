@@ -4,3 +4,6 @@
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "neovim/.config/nvim/dein/repos/github.com/Shougo/dein.vim"]
+	path = neovim/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+	url = https://github.com/Shougo/dein.vim.git

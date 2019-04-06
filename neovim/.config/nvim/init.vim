@@ -1,60 +1,78 @@
 set clipboard+=unnamedplus
-
 filetype off
 
 " Python Interpreter
 let g:python_host_prog = expand('~/.virtualenvs/neovim2/bin/python')
 let g:python3_host_prog = expand('~/.virtualenvs/neovim3/bin/python')
 
-" Vundle Setup
-set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.config/nvim/bundle'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+" Dein Setup
+if &compatible
+  set nocompatible
+endif
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+
+if dein#load_state('~/.config/nvim/dein')
+    call dein#begin('~/.config/nvim/dein')
+
+    call dein#add('~/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('Shougo/deoplete.nvim')
+    if !has('nvim')
+        call dein#add('roxma/nvim-yarp')
+        call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
+
+    "" General
+    call dein#add('wsdjeg/dein-ui.vim')
+    call dein#add('Lokaltog/vim-easymotion')
+    call dein#add('airblade/vim-gitgutter')
+    call dein#add('bitc/vim-bad-whitespace')
+    call dein#add('bling/vim-airline')
+    call dein#add('tpope/vim-fugitive')
+    call dein#add('tpope/vim-repeat')
+    call dein#add('tpope/vim-surround')
+    call dein#add('tpope/vim-unimpaired')
+    call dein#add('tweekmonster/braceless.vim')
+    call dein#add('christoomey/vim-tmux-navigator')
+    call dein#add('tpop/vim-obsession')
+    call dein#add('ctrlpvim/ctrlp.vim')
+
+    "" Snippets
+    call dein#add('Shougo/neosnippet.vim')
+    call dein#add('Shougo/neosnippet-snippets')
+
+    "" Syntax Highlighting
+    call dein#add('chrisbra/csv.vim')
+    call dein#add('ekalinin/Dockerfile.vim')
+    call dein#add('wting/rust.vim')
+    call dein#add('junegunn/rainbow_parentheses.vim')
+    call dein#add('rodjek/vim-puppet')
+    call dein#add('posva/vim-vue')
+    call dein#add('w0rp/ale')
+
+    "" Code Completion
+    call dein#add('Shougo/echodoc.vim')
+    call dein#add('Shougo/deoplete.nvim')
+    call dein#add('tbodt/deoplete-tabnine', {'build': './install.sh'})
+    call dein#add('deoplete-plugins/deoplete-go', {'build': 'make'})
+    call dein#add('fatih/vim-go')
+
+    "" Git Things
+    call dein#add('gregsexton/gitv')
+
+    "" Colorschemes
+    call dein#add('chriskempson/vim-tomorrow-theme')
+    call dein#add('chriskempson/base16-vim')
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+filetype plugin indent on
+syntax enable
 
 " PLUGINS
 
-"" General
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'bitc/vim-bad-whitespace'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tweekmonster/braceless.vim'
-NeoBundle 'benekastah/neomake'
-NeoBundle 'junegunn/fzf', {'dir': '~/.fzf'}
-NeoBundle 'junegunn/fzf.vim'
-NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'tpop/vim-obsession'
-
-"" Syntax Highlighting
-NeoBundle 'chrisbra/csv.vim'
-NeoBundle 'ekalinin/Dockerfile.vim'
-" NeoBundle 'scrooloose/syntastic'
-NeoBundle 'wting/rust.vim'
-NeoBundle 'junegunn/rainbow_parentheses.vim'
-NeoBundle 'rodjek/vim-puppet'
-NeoBundle 'posva/vim-vue'
-
-"" Code Completion
-NeoBundle 'Shougo/echodoc.vim'
-NeoBundle 'Shougo/deoplete.nvim'
-"NeoBundle 'zchee/deoplete-jedi', {'for': 'python'}
-"NeoBundle 'davidhalter/jedi-vim', {'for': 'python'}
-"NeoBundle 'zchee/deoplete-clang', {'for': 'cpp'}
-NeoBundle 'tbodt/deoplete-tabnine', { 'build': {'linux': './install.sh' }}
-
-"" Git Things
-NeoBundle 'gregsexton/gitv'
-
-"" Colorschemes
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'chriskempson/base16-vim'
-
-" Vundle End
-call neobundle#end()
 
 " Dunno what to call this
 filetype plugin indent on
